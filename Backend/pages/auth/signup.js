@@ -112,7 +112,7 @@ export default function Signup() {
         <p className="mt-1 flex flex-center">
           Already an Admin?{" "}
           <span className="signin" onClick={() => router.push("/auth/signin")}>
-            Sign Up
+            Sign In
           </span>
         </p>
       </div>

@@ -40,18 +40,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         </div>
       ) : (
         <>
-          <SessionProvider session={session}>
-            <ParentComponent
-              appOpen={asideOpen}
-              appAsideOpen={handleAsideClick}
-            />
-          </SessionProvider>
-
+          {/* <SessionProvider session={session}> */}
+          <ParentComponent
+            appOpen={asideOpen}
+            appAsideOpen={handleAsideClick}
+          />
+          {/* </SessionProvider> */}
           <main>
             <div className={asideOpen ? "container" : "container active"}>
-              <SessionProvider session={session}>
-                <Component {...pageProps} />
-              </SessionProvider>
+              {/* <SessionProvider session={session}> */}
+              <Component {...pageProps} />/{" "}
             </div>
           </main>
         </>

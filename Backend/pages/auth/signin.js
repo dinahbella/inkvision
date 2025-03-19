@@ -6,10 +6,7 @@ import React, { useState, useEffect } from "react";
 
 export default function Signin() {
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const router = useRouter();
 
@@ -24,7 +21,7 @@ export default function Signin() {
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   // Handle form submission
@@ -33,7 +30,6 @@ export default function Signin() {
     setError("");
     setLoading(true);
 
-    // Validate form fields
     if (!form.email || !form.password) {
       setError("All fields are required.");
       setLoading(false);
@@ -41,16 +37,15 @@ export default function Signin() {
     }
 
     try {
-      // Sign in using NextAuth's credentials provider
       const result = await signIn("credentials", {
         redirect: false,
         email: form.email,
         password: form.password,
       });
+      console.log("🔹 SignIn Result:", result); // Debug log
 
-      // Handle sign-in result
-      if (result.error) {
-        setError(result.error);
+      if (!result.ok) {
+        setError(result.error || "Invalid credentials.");
       } else {
         router.push("/"); // Redirect on success
       }
@@ -73,6 +68,7 @@ export default function Signin() {
             placeholder="Email"
             value={form.email}
             onChange={handleChange}
+            autoComplete="email"
             required
           />
           <input
@@ -81,6 +77,7 @@ export default function Signin() {
             placeholder="Password"
             value={form.password}
             onChange={handleChange}
+            autoComplete="current-password"
             required
           />
           <button type="submit" disabled={loading}>
@@ -89,7 +86,11 @@ export default function Signin() {
         </form>
         <p className="mt-1 flex flex-center">
           Wanna be an Admin?{" "}
-          <span className="signup" onClick={() => router.push("/auth/signup")}>
+          <span
+            className="signup"
+            onClick={() => router.push("/auth/signup")}
+            style={{ cursor: "pointer", color: "blue" }} // Ensure it looks clickable
+          >
             Sign Up
           </span>
         </p>

@@ -15,7 +15,7 @@ export default function LoginLayout({ children }) {
 
   if (!session) {
     // Redirect to sign-in page if the user is not authenticated
-    router.push("/auth/signin");
+    router.push("/auth/signup");
     return null; // Return null to prevent rendering anything else
   }
 
