@@ -5,7 +5,7 @@ import Loading from "../components/Loading";
 import { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const [asideOpen, setAsideOpen] = useState(false);
@@ -40,12 +40,12 @@ function MyApp({ Component, pageProps }) {
         </div>
       ) : (
         <>
-          {/* <SessionProvider session={session}> */}
-          <ParentComponent
-            appOpen={asideOpen}
-            appAsideOpen={handleAsideClick}
-          />
-          {/* </SessionProvider> */}
+          <SessionProvider session={session}>
+            <ParentComponent
+              appOpen={asideOpen}
+              appAsideOpen={handleAsideClick}
+            />
+          </SessionProvider>
 
           <main>
             <div className={asideOpen ? "container" : "container active"}>

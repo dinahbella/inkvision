@@ -1,20 +1,39 @@
 import mongooseConnect from "../../../lib/mongoose";
 import { Profile } from "../../../models/Profile";
-export default async function handler(req, res) {
-  await mongooseConnect();
+import bcrypt from "bcryptjs";
 
-  const { email, password } = req.body;
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
 
   try {
-    const existingUser = await Profile.findOne({ email });
+    // Connect to MongoDB
+    await mongooseConnect();
 
+    // Extract data from the request body
+    const { email, password } = req.body;
+
+    // Check if the user already exists
+    const existingUser = await Profile.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
-    //  create new user
-    const newUser = new Profile.create({ email, password });
-    res.status(201).json({ message: "User createdd successfully" });
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user
+    const newUser = await Profile.create({ email, password: hashedPassword });
+
+    // Return success response
+    res
+      .status(201)
+      .json({ message: "User created successfully", user: newUser });
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    console.error("Signup error:", error);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
   }
 }
