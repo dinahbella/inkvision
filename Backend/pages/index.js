@@ -172,6 +172,7 @@ export default function Home() {
               <h3>Year Overview</h3>
               <ul className="creative-dots">
                 <li className="small-dot"></li>
+                <li className="big-dot"></li>
               </ul>
               <h3 className="text-right">
                 {blogsData.filter((dat) => dat.status === "Publish").length}

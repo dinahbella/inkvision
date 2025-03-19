@@ -838,7 +838,20 @@ button {
   color: #fff;
   font-weight: 700;
 }
-
+.big-dot {
+  clip-path: polygon(
+    15% 3%,
+    11% 6%,
+    5% 10%,
+    2% 11%,
+    2% 11%,
+    2% 2%,
+    0% 2%,
+    1% 7%,
+    9% 1%,
+    7% 1%
+  );
+}
 .leftprofile_details {
   width: 100%; /* Fixed width for the left profile section */
   padding: 20px; /* Padding inside the container */
