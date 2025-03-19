@@ -4,8 +4,8 @@ import "../styles/global.css";
 import ParentComponent from "../components/ParentComponent";
 import Loading from "../components/Loading";
 import { useRouter } from "next/router";
-
-function MyApp({ Component, pageProps }) {
+import { SessionProvider } from "next-auth/react";
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -42,15 +42,17 @@ function MyApp({ Component, pageProps }) {
         </div>
       ) : (
         <>
-          <ParentComponent
-            appOpen={asideOpen}
-            appAsideOpen={handleAsideClick}
-          />
-          <main>
-            <div className={asideOpen ? "container" : "container active"}>
-              <Component {...pageProps} />
-            </div>
-          </main>
+          <SessionProvider session={session}>
+            <ParentComponent
+              appOpen={asideOpen}
+              appAsideOpen={handleAsideClick}
+            />
+            <main>
+              <div className={asideOpen ? "container" : "container active"}>
+                <Component {...pageProps} />
+              </div>
+            </main>
+          </SessionProvider>
         </>
       )}
       <ParentComponent appOpen={asideOpen} appAsideOpen={handleAsideClick} />
