@@ -1076,6 +1076,12 @@ button {
   max-width: 600px;
   margin: 0 auto;
 }
+.loginform {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgb(147, 208, 236);
+}
 .contactinfo h2 {
   margin-bottom: 8px;
   color: #571f9e;

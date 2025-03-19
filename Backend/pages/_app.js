@@ -3,9 +3,8 @@ import "../styles/global.css";
 import ParentComponent from "../components/ParentComponent";
 import Loading from "../components/Loading";
 import { useRouter } from "next/router";
-import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }) {
+function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const [asideOpen, setAsideOpen] = useState(false);
@@ -32,7 +31,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   };
 
   return (
-    <SessionProvider session={session}>
+    <>
       {loading ? (
         <div className="flex flex-center wh-100">
           <Loading />
@@ -40,10 +39,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         </div>
       ) : (
         <>
+          {/* <SessionProvider session={session}> */}
           <ParentComponent
             appOpen={asideOpen}
             appAsideOpen={handleAsideClick}
           />
+          {/* </SessionProvider> */}
+
           <main>
             <div className={asideOpen ? "container" : "container active"}>
               <Component {...pageProps} />
@@ -51,7 +53,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           </main>
         </>
       )}
-    </SessionProvider>
+    </>
   );
 }
 
