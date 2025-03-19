@@ -1101,7 +1101,7 @@ button {
   box-shadow: #709ae7 0px 10px 10px -5px;
 }
 .loginform input:focus {
-  box-shadow: 1px 1px 4px 6px #79a2ee;
+  box-shadow: 1px 1px 2px 4px #79a2ee;
 }
 .loginform button {
   width: 100%;

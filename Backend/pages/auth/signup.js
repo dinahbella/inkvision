@@ -11,7 +11,16 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {}, []);
+  // Effect to clear error after 3 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError("");
+      }, 5000);
+      return () => clearTimeout(timer); // Cleanup timer on component unmount or state update
+    }
+  }, [error]);
+
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +46,6 @@ export default function Signup() {
       return;
     }
 
-    // Simulate an API call (replace with actual signup logic)
     try {
       const response = await fetch("/api/auth/signup", {
         method: "POST",
@@ -48,17 +56,14 @@ export default function Signup() {
       });
 
       const data = await response.json();
-      if (data.error) {
-        setTimeout(() => {
-          setError("Error occured. Please try again.");
-        }, 3000);
-        setError("");
+
+      if (!response.ok) {
+        setError(data.error || "An error occurred. Please try again.");
       } else {
-        // Redirect to login or dashboard after successful signup
         router.push("/auth/signin");
       }
     } catch (err) {
-      setError(err.message);
+      setError("An unexpected error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
