@@ -1,7 +1,9 @@
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function Signup() {
+  const { data: session, status } = useSession();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -13,13 +15,16 @@ export default function Signup() {
 
   // Effect to clear error after 3 seconds
   useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
+    }
     if (error) {
       const timer = setTimeout(() => {
         setError("");
       }, 5000);
       return () => clearTimeout(timer); // Cleanup timer on component unmount or state update
     }
-  }, [error]);
+  }, [error, status, router]);
 
   // Handle input changes
   const handleChange = (e) => {
