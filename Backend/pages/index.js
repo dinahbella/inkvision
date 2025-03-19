@@ -12,6 +12,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import LoginLayout from "../components/LoginLayout";
 
 export default function Home() {
   // Register Chart.js components
@@ -119,134 +120,136 @@ export default function Home() {
   }
 
   return (
-    <>
-      <Head>
-        <title>Portfolio Backend</title>
-        <meta name="description" content="Blog website backend" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className="dashboard">
-        <div className="titledashboard flex flex-sb">
-          <div>
-            <h2>
-              Admin <span>Dashboard</span>
-            </h2>
-            <h3>ADMIN PANEL</h3>
+    <LoginLayout>
+      <>
+        <Head>
+          <title>Portfolio Backend</title>
+          <meta name="description" content="Blog website backend" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className="dashboard">
+          <div className="titledashboard flex flex-sb">
+            <div>
+              <h2>
+                Admin <span>Dashboard</span>
+              </h2>
+              <h3>ADMIN PANEL</h3>
+            </div>
+            <div className="breadcrumb">
+              <FaHome /> <span>/</span> <span>Dashboard</span>
+            </div>
           </div>
-          <div className="breadcrumb">
-            <FaHome /> <span>/</span> <span>Dashboard</span>
+          {/* cards */}
+          <div className="topfourcards flex flex-sb">
+            <div className="four_card">
+              <h2>Total Blogs</h2>
+              <span>
+                {blogsData.filter((dat) => dat.status === "Publish").length}
+              </span>
+            </div>
+            <div className="four_card">
+              <h2>Total Products</h2>
+              <span>
+                {" "}
+                {shopData.filter((dat) => dat.status === "Publish").length}
+              </span>
+            </div>
+            <div className="four_card">
+              <h2>Total Projects</h2>
+              <span>
+                {" "}
+                {projectData.filter((dat) => dat.status === "Publish").length}
+              </span>
+            </div>
+            <div className="four_card">
+              <h2>Photos</h2>
+              <span>{photosData.length}</span>
+            </div>
           </div>
-        </div>
-        {/* cards */}
-        <div className="topfourcards flex flex-sb">
-          <div className="four_card">
-            <h2>Total Blogs</h2>
-            <span>
-              {blogsData.filter((dat) => dat.status === "Publish").length}
-            </span>
+          {/* year overview */}
+          <div className="year_overview flex flex-sb mb-1">
+            <div className="leftyearoverview">
+              <div className="flex flex-sb">
+                <h3>Year Overview</h3>
+                <ul className="creative-dots">
+                  <li className="small-dot"></li>
+                  <li className="big-dot"></li>
+                </ul>
+                <h3 className="text-right">
+                  {blogsData.filter((dat) => dat.status === "Publish").length}
+                  / 365 <br /> <span>Total Published</span>
+                </h3>
+              </div>
+              <Bar data={data} options={options} />
+            </div>
           </div>
-          <div className="four_card">
-            <h2>Total Products</h2>
-            <span>
-              {" "}
-              {shopData.filter((dat) => dat.status === "Publish").length}
-            </span>
-          </div>
-          <div className="four_card">
-            <h2>Total Projects</h2>
-            <span>
-              {" "}
-              {projectData.filter((dat) => dat.status === "Publish").length}
-            </span>
-          </div>
-          <div className="four_card">
-            <h2>Photos</h2>
-            <span>{photosData.length}</span>
-          </div>
-        </div>
-        {/* year overview */}
-        <div className="year_overview flex flex-sb mb-1">
-          <div className="leftyearoverview">
-            <div className="flex flex-sb">
-              <h3>Year Overview</h3>
+          <div className="right_salescont mt-2">
+            <div>
+              <h3>Blogs By Category</h3>
               <ul className="creative-dots">
                 <li className="small-dot"></li>
-                <li className="big-dot"></li>
               </ul>
-              <h3 className="text-right">
-                {blogsData.filter((dat) => dat.status === "Publish").length}
-                / 365 <br /> <span>Total Published</span>
-              </h3>
-            </div>
-            <Bar data={data} options={options} />
-          </div>
-        </div>
-        <div className="right_salescont mt-2">
-          <div>
-            <h3>Blogs By Category</h3>
-            <ul className="creative-dots">
-              <li className="small-dot"></li>
-            </ul>
-            <div className="blogscategory flex flex-center">
-              <table>
-                <thead>
-                  <tr>
-                    <td>Topics</td>
-                    <td>data</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Writing Tips</td>
-                    <td>
-                      {" "}
-                      {
-                        blogsData.filter(
-                          (dat) => dat.blogcategory[0] === "Writing Tips"
-                        ).length
-                      }
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Book Reviews</td>
-                    <td>
-                      {" "}
-                      {
-                        blogsData.filter(
-                          (dat) => dat.blogcategory[0] === "Book Reviews"
-                        ).length
-                      }
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Publishing </td>
-                    <td>
-                      {" "}
-                      {
-                        blogsData.filter(
-                          (dat) => dat.blogcategory[0] === "Publishing"
-                        ).length
-                      }
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Writing Prompts</td>
-                    <td>
-                      {" "}
-                      {
-                        blogsData.filter(
-                          (dat) => dat.blogcategory[0] === "Writing Prompts"
-                        ).length
-                      }
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div className="blogscategory flex flex-center">
+                <table>
+                  <thead>
+                    <tr>
+                      <td>Topics</td>
+                      <td>data</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Writing Tips</td>
+                      <td>
+                        {" "}
+                        {
+                          blogsData.filter(
+                            (dat) => dat.blogcategory[0] === "Writing Tips"
+                          ).length
+                        }
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Book Reviews</td>
+                      <td>
+                        {" "}
+                        {
+                          blogsData.filter(
+                            (dat) => dat.blogcategory[0] === "Book Reviews"
+                          ).length
+                        }
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Publishing </td>
+                      <td>
+                        {" "}
+                        {
+                          blogsData.filter(
+                            (dat) => dat.blogcategory[0] === "Publishing"
+                          ).length
+                        }
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Writing Prompts</td>
+                      <td>
+                        {" "}
+                        {
+                          blogsData.filter(
+                            (dat) => dat.blogcategory[0] === "Writing Prompts"
+                          ).length
+                        }
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
+    </LoginLayout>
   );
 }
