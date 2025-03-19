@@ -653,7 +653,20 @@ button {
   outline: none;
   transition: box-shadow 0.3s ease;
 }
-
+.error {
+  color: #721c24; /* Dark red text color */
+  background-color: #f8d7da; /* Light red background */
+  border: 1px solid #f5c6cb; /* Border color */
+  padding: 10px 15px; /* Padding inside the box */
+  border-radius: 15px; /* Rounded corners */
+  font-family: Arial, sans-serif; /* Font family */
+  font-size: 14px; /* Font size */
+  margin: 10px 0; /* Margin outside the box */
+  display: inline-block; /* Make the error message inline */
+  width: 100%; /* Full width */
+  box-sizing: border-box; /* Include padding and border in the width */
+  text-align: center; /* Center the text */
+}
 .blogstable input:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
@@ -1075,7 +1088,7 @@ button {
   background-color: white;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 3px 4px 6px 1px rgba(41, 172, 238, 0.43);
+  box-shadow: 3px 4px 6px 1px #155ce0;
 }
 .loginform input {
   width: 100%;
@@ -1085,10 +1098,10 @@ button {
   border: 1px solid #ddd;
   border-radius: 20px;
   margin-top: 20px;
-  box-shadow: rgba(143, 215, 252, 0.43) 0px 10px 10px -5px;
+  box-shadow: #709ae7 0px 10px 10px -5px;
 }
 .loginform input:focus {
-  box-shadow: 1px 1px 4px 6px rgba(41, 172, 238, 0.43);
+  box-shadow: 1px 1px 4px 6px #79a2ee;
 }
 .loginform button {
   width: 100%;
@@ -1096,7 +1109,7 @@ button {
   border: none;
   outline: none;
   border-radius: 20px;
-  background: linear-gradient(45deg, #29acee, #1c7b9c);
+  background: linear-gradient(45deg, #5644f7, #155ce0);
   color: white;
   font-size: 20px;
   margin-top: 20px;
@@ -1104,7 +1117,7 @@ button {
   transition: all 0.3s ease;
 }
 .loginform button:hover {
-  background: linear-gradient(45deg, #1c7b9c, #29acee);
+  background: linear-gradient(45deg, #155ce0, #5644f7);
   transform: scale(105%);
 }
 .contactinfo h2 {
@@ -1139,7 +1152,7 @@ button {
   text-align: center;
   font-weight: 900;
   font-size: 35px;
-  color: #2498cc;
+  color: #155ce0;
 }
 .form {
   margin-top: 20px;

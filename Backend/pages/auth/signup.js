@@ -39,7 +39,7 @@ export default function Signup() {
 
     // Simulate an API call (replace with actual signup logic)
     try {
-      const response = await fetch("/api/signup", {
+      const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,12 +47,16 @@ export default function Signup() {
         body: JSON.stringify(form),
       });
 
-      if (!response.ok) {
-        throw new Error("Signup failed. Please try again.");
+      const data = await response.json();
+      if (data.error) {
+        setTimeout(() => {
+          setError("Error occured. Please try again.");
+        }, 3000);
+        setError("");
+      } else {
+        // Redirect to login or dashboard after successful signup
+        router.push("/auth/signin");
       }
-
-      // Redirect to login or dashboard after successful signup
-      router.push("/login");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -93,6 +97,7 @@ export default function Signup() {
           <button type="submit" disabled={loading}>
             {loading ? "Signing Up..." : "Sign Up"}
           </button>
+          {error && <div className="error">{error}</div>}
         </form>
       </div>
     </div>
