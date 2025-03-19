@@ -47,20 +47,17 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
               appOpen={asideOpen}
               appAsideOpen={handleAsideClick}
             />
-            <main>
-              <div className={asideOpen ? "container" : "container active"}>
-                <Component {...pageProps} />
-              </div>
-            </main>
           </SessionProvider>
+
+          <main>
+            <div className={asideOpen ? "container" : "container active"}>
+              <SessionProvider session={session}>
+                <Component {...pageProps} />
+              </SessionProvider>
+            </div>
+          </main>
         </>
       )}
-      <ParentComponent appOpen={asideOpen} appAsideOpen={handleAsideClick} />
-      <main>
-        <div className={asideOpen ? "container" : "container active"}>
-          <Component {...pageProps} />
-        </div>
-      </main>
     </>
   );
 }
