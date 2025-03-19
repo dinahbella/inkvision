@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>
       {loading ? (
-        <div className="flex flex-collectMeta flex-center wh-100">
+        <div className="flex flex-center flex-center wh-100">
           <Loading />
           <h1 className="mt-1">Loading...</h1>
         </div>
