@@ -49,7 +49,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
 
           <main>
             <div className={asideOpen ? "container" : "container active"}>
-              <Component {...pageProps} />
+              <SessionProvider session={session}>
+                <Component {...pageProps} />
+              </SessionProvider>
             </div>
           </main>
         </>

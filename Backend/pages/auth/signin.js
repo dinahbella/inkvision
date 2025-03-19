@@ -87,6 +87,12 @@ export default function Signin() {
             {loading ? "Signing In..." : "Sign In"}
           </button>
         </form>
+        <p className="mt-1 flex flex-center">
+          Wanna be an Admin?{" "}
+          <span className="signup" onClick={() => router.push("/auth/signup")}>
+            Sign Up
+          </span>
+        </p>
       </div>
     </div>
   );

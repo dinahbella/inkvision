@@ -1084,6 +1084,16 @@ button {
   max-width: 600px;
   margin: 0 auto;
 }
+.signup,
+.signin {
+  color: #0070f3;
+  margin-left: 10px;
+}
+.signup:hover,
+.signin:hover {
+  transform: scale(110%);
+  text-decoration: underline;
+}
 .loginform {
   background-color: white;
   border-radius: 20px;

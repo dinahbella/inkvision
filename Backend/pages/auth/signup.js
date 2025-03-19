@@ -109,6 +109,12 @@ export default function Signup() {
           </button>
           {error && <div className="error">{error}</div>}
         </form>
+        <p className="mt-1 flex flex-center">
+          Already an Admin?{" "}
+          <span className="signin" onClick={() => router.push("/auth/signin")}>
+            Sign Up
+          </span>
+        </p>
       </div>
     </div>
   );
