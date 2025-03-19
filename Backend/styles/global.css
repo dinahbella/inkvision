@@ -419,11 +419,6 @@ button {
   width: 100%;
   color: #000;
 }
-/* .blogscategory table tr {
-  background-color: rgb(230, 230, 230);
-  color: #000;
-  padding: 10px;
-} */
 .blogscategory table thead tr {
   background-color: rgb(230, 230, 230);
   color: #000;
@@ -1080,7 +1075,37 @@ button {
   background-color: white;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 0 10px rgb(147, 208, 236);
+  box-shadow: 3px 4px 6px 1px rgba(41, 172, 238, 0.43);
+}
+.loginform input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: rgba(143, 215, 252, 0.43) 0px 10px 10px -5px;
+}
+.loginform input:focus {
+  box-shadow: 1px 1px 4px 6px rgba(41, 172, 238, 0.43);
+}
+.loginform button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #29acee, #1c7b9c);
+  color: white;
+  font-size: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.loginform button:hover {
+  background: linear-gradient(45deg, #1c7b9c, #29acee);
+  transform: scale(105%);
 }
 .contactinfo h2 {
   margin-bottom: 8px;
@@ -1114,7 +1139,7 @@ button {
   text-align: center;
   font-weight: 900;
   font-size: 38px;
-  color: rgb(16, 137, 211);
+  color: #2498cc;
 }
 .form {
   margin-top: 20px;
